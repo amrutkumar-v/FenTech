@@ -1,0 +1,160 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono:
+    ui-monospace, 'SF Mono', 'Cascadia Mono', 'Segoe UI Mono', Menlo, Consolas,
+    monospace;
+
+  --color-brand-50: #e8f5ee;
+  --color-brand-100: #cfe8db;
+  --color-brand-200: #a0d1b8;
+  --color-brand-300: #6bb592;
+  --color-brand-400: #3d946d;
+  --color-brand-500: #1f7a55;
+  --color-brand-600: #0f5f40;
+  --color-brand-700: #0f5132;
+  --color-brand-800: #0c4028;
+  --color-brand-900: #08301e;
+  --color-brand-950: #041c12;
+
+  --color-ink-50: #f6f7f9;
+  --color-ink-100: #eceef2;
+  --color-ink-200: #d5d9e2;
+  --color-ink-300: #b0b8c8;
+  --color-ink-400: #8591a8;
+  --color-ink-500: #66748d;
+  --color-ink-600: #515d76;
+  --color-ink-700: #434d61;
+  --color-ink-800: #3a4252;
+  --color-ink-900: #333947;
+  --color-ink-950: #14171f;
+
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-border-base: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  --shadow-card: 0 1px 2px 0 rgb(20 23 31 / 0.05);
+  --shadow-panel: 0 1px 3px 0 rgb(20 23 31 / 0.08),
+    0 1px 2px -1px rgb(20 23 31 / 0.08);
+  --shadow-popover: 0 4px 16px -2px rgb(20 23 31 / 0.14);
+
+  --animate-fade-in: fade-in 120ms ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:root {
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-sunken: #f4f6f5;
+  --border: #e2e6e4;
+  --border-strong: #c8cfcc;
+  --text-primary: #14171f;
+  --text-secondary: #434d61;
+  --text-muted: #66748d;
+  color-scheme: light;
+}
+
+.dark {
+  --surface: #14171f;
+  --surface-raised: #1c202b;
+  --surface-sunken: #10131a;
+  --border: #2a3040;
+  --border-strong: #3d4558;
+  --text-primary: #f2f4f8;
+  --text-secondary: #b0b8c8;
+  --text-muted: #8591a8;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--surface-sunken);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Amounts use tabular figures so columns align. */
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Scrollbars: subtle, consistent across light/dark. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .print-page {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  table {
+    page-break-inside: auto;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+}
